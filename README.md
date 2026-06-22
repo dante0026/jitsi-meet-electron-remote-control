@@ -1,8 +1,6 @@
 # Jitsi Meet Electron
 
 Desktop application for [Jitsi Meet] built with [Electron].
-This is a forked build with activated remote control feature and disabled auto update (due to the fact that application with remote control would be overridden).
-For binaries check the release artifacts.
 
 ![](screenshot.png)
 
@@ -10,9 +8,9 @@ For binaries check the release artifacts.
 
 - [End-to-End Encryption](https://jitsi.org/blog/e2ee/) support (BETA)
 - Works with any Jitsi Meet deployment
-- Builtin auto-updates
-- Screensharing (Windows, Mac, X11 only. Not supported under Wayland, see known issues below)
-- Remote control (Note following issue. Just use with trustworthy server. Original repo has this feature [disabled](https://github.com/jitsi/jitsi-meet-electron/issues/483) due to [security issues](https://github.com/jitsi/security-advisories/blob/master/advisories/JSA-2020-0001.md))
+- Built-in auto-updates
+- Screen sharing
+- ~Remote control~ (currently [disabled](https://github.com/jitsi/jitsi-meet-electron/issues/483) due to [security issues](https://github.com/jitsi/security-advisories/blob/master/advisories/JSA-2020-0001.md))
 - Always-On-Top window
 - Support for deeplinks such as `jitsi-meet://myroom` (will open `myroom` on the configured Jitsi instance) or `jitsi-meet://jitsi.mycompany.com/myroom` (will open `myroom` on the Jitsi instance running on `jitsi.mycompany.com`)
 
@@ -32,7 +30,7 @@ Download our latest release and you're off to the races!
 
 ### Homebrew
 
-For *macOS* user, you can install the application using the following command:
+For *macOS* users, you can install the application using the following command:
 
 ```
 brew install --cask jitsi-meet
@@ -46,7 +44,7 @@ If you want to hack on this project, here is how you do it.
 
 #### Installing dependencies
 
-Install Node.js 20 first (or if you use [nvm](https://github.com/nvm-sh/nvm), switch to Node.js 20 by running `nvm use`).
+Install Node.js 22 first (or if you use [nvm](https://github.com/nvm-sh/nvm), switch to it by running `nvm use`).
 
 <details><summary>Extra dependencies for Windows</summary>
 
@@ -92,31 +90,7 @@ npm run dist
 
 #### Working with `jitsi-meet-electron-sdk`
 
-[`jitsi-meet-electron-sdk`] is a helper package which implements many features
-such as remote control and the always-on-top window. If new features are to be
-added or tested, running with a local version of these utils is very handy.
-
-By default, the @jitsi/electron-sdk is build from `npm`. The default dependency path in `package.json` is:
-
-```json
-"@jitsi/electron-sdk": "^3.0.0"
-```
-
-To work with a local copy, you must change the path to:
-
-```json
-"@jitsi/electron-sdk": "file:///Users/name/jitsi-meet-electron-sdk-copy",
-```
-
-To build the project, you must force it to take the sources, as `npm update` will
-not do it.
-
-```bash
-npm install @jitsi/electron-sdk --force
-```
-
-NOTE: Also check the [`jitsi-meet-electron-sdk` `README`] to see how to configure
-your environment.
+For instructions on SDK versus electron-app separation and how to set up local development using `npm link`, please refer to the [Contributing and Local Development guide in the Jitsi Handbook](https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-electron-sdk#contributing-and-local-development).
 
 #### Publishing
 
@@ -146,33 +120,29 @@ None
 
 * If you can't execute the file directly after downloading it, try running `chmod u+x ./jitsi-meet-x86_64.AppImage`
 
-* Under wayland, screensharing is currently buggy:
-  * Sharing a full screen is not possible
-  * When trying to start screensharing under wayland, 2 permission popups will show up. First a pipewire based system selector, then a jitsi internal selector. Select an application window in the first selector and then the same in the jitsi internal selector. Sharing application windows works via this, sharing a full screen unfortunately not.
-
-* On Ubuntu 22.04 and later, the AppImage will fail with a fuse error (as the AppImage uses `libfuse2`, while 22.04 comes with `libfuse3` by default):
+* On Ubuntu 22.04 and later, the AppImage will fail with a FUSE error (as the AppImage uses `libfuse2`, while 22.04 comes with `libfuse3` by default):
 
   ```
   dlopen(): error loading libfuse.so.2
   ```
 
-  To fix this, install libfuse2 as follows:
+  To fix this, install `libfuse2` as follows:
 
   ```
   sudo apt install libfuse2
   ```
 
 * On Ubuntu 24.04 and later, the AppImage will fail with a sandboxing error (`The SUID sandbox helper binary was found, but is not configured correctly...`)
-  This is due to AppArmor conflicting by restricting unprivileged user namespaces (https://github.com/jitsi/jitsi-meet-electron/issues/965,
+  This is due to an AppArmor conflict that restricts unprivileged user namespaces ([jitsi/jitsi-meet-electron#965](https://github.com/jitsi/jitsi-meet-electron/issues/965),
   [Ubuntu blog post](https://ubuntu.com/blog/ubuntu-23-10-restricted-unprivileged-user-namespaces)).
 
-  To workaround this, disable the use of the sandbox with `--no-sandbox`:
+  To work around this, disable the use of the sandbox with `--no-sandbox`:
 
   ```
   ./jitsi-meet-x86_64.AppImage --no-sandbox
   ```
   
-* If you experience a blank page after jitsi server upgrades, try removing the local cache files:
+* If you experience a blank page after a Jitsi server upgrades, try removing the local cache files:
 
   ```
   rm -rf ~/.config/Jitsi\ Meet/
@@ -180,7 +150,7 @@ None
 
 ## Translations
 
-The JSON files are for all the strings inside the application, and can be translated [here](/app/i18n/lang).
+The JSON files contain all the strings inside the application, and can be translated [here](/app/i18n/lang).
 
 New translations require the addition of a line in [index.js](/app/i18n/index.js).
 
@@ -189,7 +159,7 @@ Please search for `Comment[hu]` as an example to help add your translation of th
 
 ## License
 
-Apache 2. See the [LICENSE] file.
+Apache License 2.0. See the [LICENSE] file.
 
 ## Community
 
