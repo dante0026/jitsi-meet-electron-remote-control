@@ -8,7 +8,7 @@
 	"sendFeedbackLink": "Send Feedback",
 	"aboutLink": "About",
 	"sourceLink": "Source Code",
-	"versionLabel": "Version: {{version}}",
+	"versionLabel": "Version: 2026.6.0",
 	"settings": {
 		"back": "Back",
 		"alwaysOnTopWindow": "Always on Top Window",

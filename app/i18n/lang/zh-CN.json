@@ -8,7 +8,7 @@
 	"sendFeedbackLink": "发送反馈",
 	"aboutLink": "关于",
 	"sourceLink": "源代码",
-	"versionLabel": "版本：{{version}}",
+	"versionLabel": "版本：2026.6.0",
 	"settings": {
 		"back": "返回",
 		"alwaysOnTopWindow": "始终置顶",

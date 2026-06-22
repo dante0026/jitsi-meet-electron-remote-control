@@ -7,7 +7,7 @@
 	"sendFeedbackLink": "Envoyer des commentaires",
 	"aboutLink": "À propos",
 	"sourceLink": "Code source",
-	"versionLabel": "Version : {{version}}",
+	"versionLabel": "Version : 2026.6.0",
 	"settings": {
 		"back": "Retour",
 		"alwaysOnTopWindow": "Fenêtre Toujours au Dessus",

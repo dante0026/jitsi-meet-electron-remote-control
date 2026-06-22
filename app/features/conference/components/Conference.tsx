@@ -15,7 +15,7 @@ import { LoadingIndicator, Wrapper } from '../styled';
 
 // For enabling remote control, please change ENABLE_REMOTE_CONTROL flag in
 // main.js to true as well
-const ENABLE_REMOTE_CONTROL = false;
+const ENABLE_REMOTE_CONTROL = true;
 
 interface IProps {
     _alwaysOnTopWindowEnabled?: boolean;

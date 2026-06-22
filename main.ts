@@ -17,7 +17,7 @@ import debug from 'electron-debug';
 import isDev from 'electron-is-dev';
 import log from 'electron-log';
 import electronReload from 'electron-reload';
-import { autoUpdater } from 'electron-updater';
+//import { autoUpdater } from 'electron-updater';
 import windowStateKeeper from 'electron-window-state';
 import * as path from 'path';
 import * as URL from 'url';
@@ -37,7 +37,7 @@ const showDevTools = Boolean(process.env.SHOW_DEV_TOOLS) || (process.argv.indexO
 
 // For enabling remote control, please change the ENABLE_REMOTE_CONTROL flag in
 // app/features/conference/components/Conference.js to true as well
-const ENABLE_REMOTE_CONTROL = false;
+const ENABLE_REMOTE_CONTROL = true;
 
 // Fix screen-sharing thumbnails being missing sometimes.
 // https://github.com/electron/electron/issues/44504
@@ -57,7 +57,7 @@ if (!app.commandLine.hasSwitch('enable-features')) {
     app.commandLine.appendSwitch('enable-features', 'WebRTCPipeWireCapturer');
 }
 
-autoUpdater.logger = log;
+//autoUpdater.logger = log;
 log.transports.file.level = 'info';
 
 // Enable context menu so things like copy and paste work in input fields.
@@ -193,9 +193,9 @@ function createJitsiMeetWindow() {
     setApplicationMenu();
 
     // Check for Updates.
-    if (!process.mas) {
-        autoUpdater.checkForUpdatesAndNotify();
-    }
+    //if (!process.mas) {
+    //    autoUpdater.checkForUpdatesAndNotify();
+    //}
 
     // Load the previous window state with fallback to defaults.
     const windowState = windowStateKeeper({
